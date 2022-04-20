@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Certificate Generator</string>
+    <string name="register_here"><u> Register here.</u></string>
+    <string name="Login_here"><u> Login here.</u></string>
 </resources>

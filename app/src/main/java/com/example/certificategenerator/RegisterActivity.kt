@@ -86,7 +86,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun updateUI(user: FirebaseUser?) {
         if(user!=null){
             val intent = Intent(this, CompanyDetails::class.java)
-            intent.putExtra("Company Name", companyName)
+            intent.putExtra("CompanyName", companyName)
             intent.putExtra("Email", email)
             startActivity(intent)
         }

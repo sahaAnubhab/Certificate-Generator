@@ -1,7 +1,11 @@
 package com.example.certificategenerator.models
 
-data class Company(
-    val cid: String,
-    val companyName: String,
+import android.net.Uri
 
+data class Company(
+    val cid: String = "",
+    val companyName: String= "",
+    val companyEmail: String= "",
+    val companyLogo: Uri? = null,
+    val signature: Uri? = null
 )

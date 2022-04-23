@@ -33,7 +33,7 @@ import java.io.File
 class CompanyDetails : AppCompatActivity() {
 
     private val PICK_IMG = 100
-    private val PICK_SIGN = 100
+    private val PICK_SIGN = 101
     private var imageUriLogo: Uri? = null
     private var imageUriSign: Uri? = null
     var logoDownloadUri: Uri? = null
@@ -127,6 +127,7 @@ class CompanyDetails : AppCompatActivity() {
 //          After completion of storing, get url of images and store the details in firestore
             val allTask = Tasks.whenAll(imagePathLogo,imagePathSign)
             allTask.addOnCompleteListener{
+                Log.d("CompleteUpload", it.isComplete.toString())
                 GlobalScope.launch(Dispatchers.IO) {
                     signDownloadUri =
                         imagePathLogo.result.metadata!!.reference!!.downloadUrl.await()

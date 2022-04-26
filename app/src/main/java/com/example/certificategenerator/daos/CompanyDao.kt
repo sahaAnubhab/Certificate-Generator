@@ -20,8 +20,8 @@ class CompanyDao {
             company.let {
                 companyCollection.document(company.cid).set(it).addOnSuccessListener {
                     Log.d("CompleteUpload", "success")
-                }.addOnFailureListener{
-                    Log.d("CompleteUpload", "Faliure ${it.message}")
+                }.addOnFailureListener{ exception ->
+                    Log.d("CompleteUpload", "Failure ${exception.message}")
                 }
             }
         }

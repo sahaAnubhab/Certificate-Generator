@@ -130,9 +130,9 @@ class CompanyDetails : AppCompatActivity() {
                 Log.d("CompleteUpload", it.isComplete.toString())
                 GlobalScope.launch(Dispatchers.IO) {
                     signDownloadUri =
-                        imagePathLogo.result.metadata!!.reference!!.downloadUrl.await()
-                    logoDownloadUri =
                         imagePathSign.result.metadata!!.reference!!.downloadUrl.await()
+                    logoDownloadUri =
+                        imagePathLogo.result.metadata!!.reference!!.downloadUrl.await()
                     uploadData(companyName, companyEmail, logoDownloadUri, signDownloadUri)
                 }
             }

@@ -4,6 +4,7 @@ import android.Manifest.permission
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Paint
+import android.graphics.Rect
 import android.graphics.Typeface
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.pdf.PdfDocument
@@ -135,7 +136,9 @@ class HomeActivity : AppCompatActivity() {
         // second parameter is position from left
         // third parameter is position from top and last
         // one is our variable for paint.
-        canvas.drawBitmap(logoBitmap!!, 56f, 40f, paint)
+        canvas.drawBitmap(Bitmap.createScaledBitmap(logoBitmap!!, 200, 200, true), 256f, 200f, paint)
+//        canvas.drawBitmap(Bitmap.createScaledBitmap(logoBitmap!!, 100, 100, true),100,100 ,paint)
+
 
         // below line is used for adding typeface for
         // our text which we will be adding in our PDF file.
@@ -144,7 +147,7 @@ class HomeActivity : AppCompatActivity() {
 
         // below line is used for setting text size
         // which we will be displaying in our PDF file.
-        title.textSize = 15f
+        title.textSize = 40f
 
         // below line is sued for setting color
         // of our text inside our PDF file.
@@ -152,6 +155,7 @@ class HomeActivity : AppCompatActivity() {
         // below line is sued for setting color
         // of our text inside our PDF file.
         title.color = ContextCompat.getColor(this, R.color.purple_200)
+        title.textAlign = Paint.Align.CENTER
 
         // below line is used to draw text in our PDF file.
         // the first parameter is our text, second parameter
@@ -162,25 +166,36 @@ class HomeActivity : AppCompatActivity() {
         // the first parameter is our text, second parameter
         // is position from start, third parameter is position from top
         // and then we are passing our variable of paint which is title.
-        canvas.drawText("A portal for IT professionals. $name", 209f, 100f, title)
-        canvas.drawText("Geeks for Geeks", 209f, 80f, title)
+
+        val nameCertificate = Paint()
+        nameCertificate.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD_ITALIC)
+        nameCertificate.textSize = 80f
+        nameCertificate.textAlign = Paint.Align.CENTER
+        title.color = ContextCompat.getColor(this, R.color.purple_200)
+
+        canvas.drawText("This is to certify that ", (canvas.width/2).toFloat(), 400f, title)
+        canvas.drawText(name, (canvas.width/2).toFloat(), 500f, nameCertificate)
+        canvas.drawText("has completed ${jobCertificate.text}", (canvas.width/2).toFloat(), 550f, title)
+
+
+        canvas.drawBitmap(Bitmap.createScaledBitmap(signBitmap!!, 200, 50, true), 500f, 600f, paint)
 
 // similarly we are creating another text and in this
         // we are aligning this text to center of our PDF file.
 
         // similarly we are creating another text and in this
         // we are aligning this text to center of our PDF file.
-        title.typeface = Typeface.defaultFromStyle(Typeface.NORMAL)
-        title.color = ContextCompat.getColor(this, R.color.purple_200)
-        title.textSize = 15f
+//        title.typeface = Typeface.defaultFromStyle(Typeface.NORMAL)
+//        title.color = ContextCompat.getColor(this, R.color.purple_200)
+//        title.textSize = 15f
 
         // below line is used for setting
         // our text to center of PDF.
 
         // below line is used for setting
         // our text to center of PDF.
-        title.textAlign = Paint.Align.CENTER
-        canvas.drawText("This is sample document which we have created.", 396f, 560f, title)
+//        title.textAlign = Paint.Align.CENTER
+//        canvas.drawText("This is sample document which we have created.", 396f, 560f, title)
 
         // after adding all attributes to our
         // PDF file we will be finishing our page.
@@ -194,7 +209,9 @@ class HomeActivity : AppCompatActivity() {
 
         // below line is used to set the name of
         // our PDF file and its path.
-        val file = File(Environment.getExternalStorageDirectory(), "MyPDF.pdf")
+        
+
+        val file = File(Environment.getExternalStorageDirectory(), "Certificate.pdf")
 
         try {
             // after creating a file name we will

@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/user/AndroidStudioProjects/CertificateGenerator/app/src/main/res/drawable/bg_login.xml" value="0.152" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/CertificateGenerator/app/src/main/res/layout/activity_certificate_view.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/CertificateGenerator/app/src/main/res/layout/activity_company_details.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/CertificateGenerator/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/CertificateGenerator/app/src/main/res/layout/activity_login.xml" value="0.25" />

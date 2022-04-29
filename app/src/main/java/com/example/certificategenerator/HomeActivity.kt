@@ -1,6 +1,7 @@
 package com.example.certificategenerator
 
 import android.Manifest.permission
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Paint
@@ -39,10 +40,19 @@ class HomeActivity : AppCompatActivity() {
     var pagewidth = 792
 
     private val PERMISSION_REQUEST_CODE = 200
+    val path = File(Environment.getExternalStorageDirectory().absolutePath+"/Certificate")
+    companion object{
+        private lateinit var fileName: String
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+//      Checking if directory exist already
+        if(!path.exists()){
+            path.mkdir()
+        }
+
         auth = Firebase.auth
         button.setOnClickListener{
             auth.signOut()
@@ -211,12 +221,14 @@ class HomeActivity : AppCompatActivity() {
         // our PDF file and its path.
         
 
-        val file = File(Environment.getExternalStorageDirectory(), "Certificate.pdf")
+//        val file = File(Environment.getExternalStorageDirectory(), "Certificate.pdf")
+
+        fileName = "$path/$name"+"Certificate.pdf"
 
         try {
             // after creating a file name we will
             // write our PDF file to that location.
-            pdfDocument.writeTo(FileOutputStream(file))
+            pdfDocument.writeTo(FileOutputStream(fileName))
 
             // below line is to print toast message
             // on completion of PDF generation.
@@ -236,6 +248,10 @@ class HomeActivity : AppCompatActivity() {
         // after storing our pdf to that
         // location we are closing our PDF file.
         pdfDocument.close()
+
+        val intent = Intent(this, CertificateView::class.java)
+        intent.putExtra("fileName", fileName)
+        startActivity(intent)
     }
 
     private fun checkPermission(): Boolean {
